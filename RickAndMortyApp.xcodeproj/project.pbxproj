@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C478DD12179333300BD32A6 /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C478DCF2179333300BD32A6 /* CharacterTableViewCell.swift */; };
+		6C478DD22179333300BD32A6 /* CharacterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C478DD02179333300BD32A6 /* CharacterTableViewCell.xib */; };
+		6C478DD521793C1900BD32A6 /* UIImageView+RickAndMortyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C478DD421793C1900BD32A6 /* UIImageView+RickAndMortyApp.swift */; };
 		6CE227CE2178CB47004778E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE227CD2178CB47004778E4 /* AppDelegate.swift */; };
 		6CE227D02178CB47004778E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE227CF2178CB47004778E4 /* ViewController.swift */; };
 		6CE227D32178CB47004778E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CE227D12178CB47004778E4 /* Main.storyboard */; };
@@ -23,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C478DCF2179333300BD32A6 /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCell.swift; sourceTree = "<group>"; };
+		6C478DD02179333300BD32A6 /* CharacterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterTableViewCell.xib; sourceTree = "<group>"; };
+		6C478DD421793C1900BD32A6 /* UIImageView+RickAndMortyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+RickAndMortyApp.swift"; sourceTree = "<group>"; };
 		6CE227CA2178CB47004778E4 /* RickAndMortyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CE227CD2178CB47004778E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CE227CF2178CB47004778E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +57,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C478DCE2179330800BD32A6 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				6C478DCF2179333300BD32A6 /* CharacterTableViewCell.swift */,
+				6C478DD02179333300BD32A6 /* CharacterTableViewCell.xib */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		6C478DD321793BF700BD32A6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6C478DD421793C1900BD32A6 /* UIImageView+RickAndMortyApp.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		6CE227C12178CB47004778E4 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +93,8 @@
 		6CE227CC2178CB47004778E4 /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
+				6C478DD321793BF700BD32A6 /* Extensions */,
+				6C478DCE2179330800BD32A6 /* Xibs */,
 				6CE227E82178CC13004778E4 /* Classes */,
 				6CE227E52178CB92004778E4 /* Model */,
 				6CE227E42178CB5D004778E4 /* Config */,
@@ -173,6 +198,7 @@
 				6CE227DB2178CB49004778E4 /* LaunchScreen.storyboard in Resources */,
 				6CE227D82178CB49004778E4 /* Assets.xcassets in Resources */,
 				6CE227D32178CB47004778E4 /* Main.storyboard in Resources */,
+				6C478DD22179333300BD32A6 /* CharacterTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,10 +210,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CE227F22178D411004778E4 /* CharRequest.swift in Sources */,
+				6C478DD521793C1900BD32A6 /* UIImageView+RickAndMortyApp.swift in Sources */,
 				6CE227D02178CB47004778E4 /* ViewController.swift in Sources */,
 				6CE227E32178CB5A004778E4 /* Config.swift in Sources */,
 				6CE227E72178CBA9004778E4 /* APIManager.swift in Sources */,
 				6CE227F02178D2DA004778E4 /* Info.swift in Sources */,
+				6C478DD12179333300BD32A6 /* CharacterTableViewCell.swift in Sources */,
 				6CE227EA2178CC2A004778E4 /* Character.swift in Sources */,
 				6CE227D62178CB47004778E4 /* RickAndMortyApp.xcdatamodeld in Sources */,
 				6CE227CE2178CB47004778E4 /* AppDelegate.swift in Sources */,
@@ -269,7 +297,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -324,7 +352,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

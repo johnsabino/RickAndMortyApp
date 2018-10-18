@@ -41,14 +41,15 @@ struct Character : Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
+        
         created = try values.decodeIfPresent(String.self, forKey: .created)
         episode = try values.decodeIfPresent([String].self, forKey: .episode)
         gender = try values.decodeIfPresent(String.self, forKey: .gender)
         id = try values.decodeIfPresent(Int.self, forKey: .id)
         image = try values.decodeIfPresent(String.self, forKey: .image)
-        location = try Location(from: decoder)
+        location = try values.decodeIfPresent(Location.self, forKey: .location)
         name = try values.decodeIfPresent(String.self, forKey: .name)
-        origin = try Origin(from: decoder)
+        origin = try values.decodeIfPresent(Origin.self, forKey: .origin)
         species = try values.decodeIfPresent(String.self, forKey: .species)
         status = try values.decodeIfPresent(String.self, forKey: .status)
         type = try values.decodeIfPresent(String.self, forKey: .type)

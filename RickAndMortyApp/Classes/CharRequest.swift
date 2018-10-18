@@ -20,7 +20,7 @@ struct CharRequest : Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        info = try Info(from: decoder)
+        info = try values.decodeIfPresent(Info.self, forKey: .info)
         characters = try values.decodeIfPresent([Character].self, forKey: .characters)
     }
     
