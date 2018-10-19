@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C0AAC04217A1E6400DDD071 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0AAC03217A1E6400DDD071 /* Episode.swift */; };
+		6C0AAC07217A20A800DDD071 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0AAC06217A20A800DDD071 /* Enums.swift */; };
 		6C478DD12179333300BD32A6 /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C478DCF2179333300BD32A6 /* CharacterTableViewCell.swift */; };
 		6C478DD22179333300BD32A6 /* CharacterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C478DD02179333300BD32A6 /* CharacterTableViewCell.xib */; };
 		6C478DD521793C1900BD32A6 /* UIImageView+RickAndMortyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C478DD421793C1900BD32A6 /* UIImageView+RickAndMortyApp.swift */; };
@@ -22,10 +24,12 @@
 		6CE227EC2178CCEC004778E4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE227EB2178CCEC004778E4 /* Location.swift */; };
 		6CE227EE2178CCFA004778E4 /* Origin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE227ED2178CCFA004778E4 /* Origin.swift */; };
 		6CE227F02178D2DA004778E4 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE227EF2178D2DA004778E4 /* Info.swift */; };
-		6CE227F22178D411004778E4 /* CharRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE227F12178D411004778E4 /* CharRequest.swift */; };
+		6CE227F22178D411004778E4 /* RootRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE227F12178D411004778E4 /* RootRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C0AAC03217A1E6400DDD071 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		6C0AAC06217A20A800DDD071 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		6C478DCF2179333300BD32A6 /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCell.swift; sourceTree = "<group>"; };
 		6C478DD02179333300BD32A6 /* CharacterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterTableViewCell.xib; sourceTree = "<group>"; };
 		6C478DD421793C1900BD32A6 /* UIImageView+RickAndMortyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+RickAndMortyApp.swift"; sourceTree = "<group>"; };
@@ -43,7 +47,7 @@
 		6CE227EB2178CCEC004778E4 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		6CE227ED2178CCFA004778E4 /* Origin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Origin.swift; sourceTree = "<group>"; };
 		6CE227EF2178D2DA004778E4 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
-		6CE227F12178D411004778E4 /* CharRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharRequest.swift; sourceTree = "<group>"; };
+		6CE227F12178D411004778E4 /* RootRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C0AAC05217A209E00DDD071 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				6C0AAC06217A20A800DDD071 /* Enums.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		6C478DCE2179330800BD32A6 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +105,7 @@
 		6CE227CC2178CB47004778E4 /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
+				6C0AAC05217A209E00DDD071 /* Enums */,
 				6C478DD321793BF700BD32A6 /* Extensions */,
 				6C478DCE2179330800BD32A6 /* Xibs */,
 				6CE227E82178CC13004778E4 /* Classes */,
@@ -132,7 +145,8 @@
 				6CE227EB2178CCEC004778E4 /* Location.swift */,
 				6CE227ED2178CCFA004778E4 /* Origin.swift */,
 				6CE227EF2178D2DA004778E4 /* Info.swift */,
-				6CE227F12178D411004778E4 /* CharRequest.swift */,
+				6CE227F12178D411004778E4 /* RootRequest.swift */,
+				6C0AAC03217A1E6400DDD071 /* Episode.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -209,13 +223,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CE227F22178D411004778E4 /* CharRequest.swift in Sources */,
+				6CE227F22178D411004778E4 /* RootRequest.swift in Sources */,
 				6C478DD521793C1900BD32A6 /* UIImageView+RickAndMortyApp.swift in Sources */,
 				6CE227D02178CB47004778E4 /* ViewController.swift in Sources */,
 				6CE227E32178CB5A004778E4 /* Config.swift in Sources */,
+				6C0AAC07217A20A800DDD071 /* Enums.swift in Sources */,
 				6CE227E72178CBA9004778E4 /* APIManager.swift in Sources */,
 				6CE227F02178D2DA004778E4 /* Info.swift in Sources */,
 				6C478DD12179333300BD32A6 /* CharacterTableViewCell.swift in Sources */,
+				6C0AAC04217A1E6400DDD071 /* Episode.swift in Sources */,
 				6CE227EA2178CC2A004778E4 /* Character.swift in Sources */,
 				6CE227D62178CB47004778E4 /* RickAndMortyApp.xcdatamodeld in Sources */,
 				6CE227CE2178CB47004778E4 /* AppDelegate.swift in Sources */,
@@ -369,6 +385,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V9TV25TFN7;
 				INFOPLIST_FILE = RickAndMortyApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -387,6 +404,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V9TV25TFN7;
 				INFOPLIST_FILE = RickAndMortyApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

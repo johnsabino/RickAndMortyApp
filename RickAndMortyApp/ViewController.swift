@@ -13,8 +13,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var characters = [Character]()
+    var locations = [Location]()
+    var episodes = [Episode]()
+    var actualPage = 1
     var apiManager = APIManager.manager
-    var image = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +26,17 @@ class ViewController: UIViewController {
         
         tableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "characterCell")
         
-        apiManager.fetch { (request) in
+        syncRequest(byPage: actualPage)
+        
+    }
+    
+    
+    func syncRequest(byPage : Int){
+        apiManager.fetchBy(typeSearch: .character,query: "page=\(byPage)") { (request: RootRequest<Character>) in
             guard let char = request.characters else {return}
-            self.characters = char
+            self.characters.append(contentsOf: char)
             self.tableView.reloadData()
+            
         }
     }
 }
@@ -44,8 +53,11 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         
         // Change 10.0 to adjust the distance from bottom
-        if maximumOffset - currentOffset <= 10.0 {
+        if maximumOffset - currentOffset <= self.view.frame.height*1.5 {
             print("load more...")
+            actualPage += 1
+            syncRequest(byPage: actualPage)
+            
         }
 
     }
@@ -57,13 +69,27 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
 
         cell.typeLabel.text = characters[indexPath.row].type
         
-        if let image = characters[indexPath.row].image, let imageURL = URL(string: image) {
-            cell.charImageView.downloaded(from: imageURL)
-        }
         
-        // Check if the last row number is the same as the last current data element
-//        if indexPath.row == self.characters.count - 1 {
-//            print("load more...")
+        
+        DispatchQueue.main.async {
+            if let image = self.characters[indexPath.row].image, let imageURL = URL(string: image) {
+
+                cell.charImageView.downloaded(from: imageURL)
+
+            }
+        }
+
+//        DispatchQueue.main.async {
+//            if let imageStr = self.characters[indexPath.row].image,
+//                let imageURL = URL(string: imageStr){
+//                do{
+//                    let imgData = try Data(contentsOf: imageURL)
+//                    cell.charImageView.image = UIImage(data: imgData)
+//                }catch{
+//                    print("error")
+//                }
+//
+//            }
 //        }
         
         return cell

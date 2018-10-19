@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Info : Codable {
+class Info : Codable {
     
     let count : Int?
     let next : String?
@@ -22,7 +22,7 @@ struct Info : Codable {
         case prev = "prev"
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         count = try values.decodeIfPresent(Int.self, forKey: .count)
         next = try values.decodeIfPresent(String.self, forKey: .next)

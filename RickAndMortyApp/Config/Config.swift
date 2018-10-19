@@ -9,5 +9,5 @@
 import Foundation
 
 struct Config {
-    static let baseURL = URL(string: "https://rickandmortyapi.com/api/character")
+    static let baseURL = URL(string: "https://rickandmortyapi.com/api")
 }

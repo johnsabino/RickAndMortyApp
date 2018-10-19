@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Origin : Codable {
+class Origin : Codable {
     
     let name : String?
     let url : String?
@@ -18,7 +18,7 @@ struct Origin : Codable {
         case url = "url"
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         name = try values.decodeIfPresent(String.self, forKey: .name)
         url = try values.decodeIfPresent(String.self, forKey: .url)

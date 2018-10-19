@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct Character : Codable {
+class Character : Codable {
     
     let created : String?
     let episode : [String]?
@@ -39,7 +39,8 @@ struct Character : Codable {
         case url = "url"
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
+        
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         created = try values.decodeIfPresent(String.self, forKey: .created)

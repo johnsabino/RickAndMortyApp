@@ -14,25 +14,35 @@ class APIManager {
     
     private init(){}
     
-    func fetch(completion: @escaping (CharRequest) -> Void){
-        
+    func fetch(type: TypeSearch, query : String, completion: @escaping (Data) -> Void){
         let baseURL = Config.baseURL
-        let queryStr = "/"
-        guard let getURL = baseURL?.appendingPathComponent(queryStr)
-            else {
+        guard let getURL = baseURL?.appendingPathComponent(type.rawValue) else {
                 print("error url not found")
                 return
         }
+
+        guard let urlComponents = NSURLComponents(url: getURL, resolvingAgainstBaseURL: false) else {return}
+        urlComponents.query = query
+        guard let endPoint = urlComponents.url else {return}
+        print("URL:\(endPoint)")
         var getRequest = URLRequest(url: getURL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 30)
-    
         getRequest.httpMethod = "GET"
-        let getTask = URLSession.shared.dataTask(with: getRequest) { (data, response, error) in
-            
+       
+        let getTask = URLSession.shared.dataTask(with: endPoint) { (data, response, error) in
             guard let data = data else {return}
             
+            completion(data)
+        }
+        
+        DispatchQueue.global(qos: .userInteractive).async {getTask.resume()}
+    }
+    
+    func fetchBy<T: Codable>(typeSearch: TypeSearch, query: String ,completion: @escaping (RootRequest<T>) -> Void){
+        self.fetch(type: typeSearch, query: query) { (data) in
             do {
                 let decoder = JSONDecoder()
-                let charachersData = try decoder.decode(CharRequest.self, from: data)
+                let charachersData = try decoder.decode(RootRequest<T>.self, from: data)
+        
                 DispatchQueue.main.async {
                     completion(charachersData)
                 }
@@ -40,7 +50,7 @@ class APIManager {
                 print("Error", err)
             }
         }
-        DispatchQueue.global(qos: .userInteractive).async {getTask.resume()}
     }
-
+    
+    
 }

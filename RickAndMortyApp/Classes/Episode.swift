@@ -1,41 +1,42 @@
 //
-//  Location.swift
+//  Episode.swift
 //  RickAndMortyApp
 //
-//  Created by João Paulo de Oliveira Sabino on 18/10/18.
+//  Created by João Paulo de Oliveira Sabino on 19/10/18.
 //  Copyright © 2018 João Paulo de Oliveira Sabino. All rights reserved.
 //
 
 import Foundation
 
-class Location : Codable {
+
+class Episode : Codable {
     
+    let airDate : String?
+    let characters : [String]?
     let created : String?
-    let dimension : String?
+    let episode : String?
     let id : Int?
     let name : String?
-    let residents : [String]?
-    let type : String?
     let url : String?
     
     enum CodingKeys: String, CodingKey {
+        case airDate = "air_date"
+        case characters = "characters"
         case created = "created"
-        case dimension = "dimension"
+        case episode = "episode"
         case id = "id"
         case name = "name"
-        case residents = "residents"
-        case type = "type"
         case url = "url"
     }
     
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
+        airDate = try values.decodeIfPresent(String.self, forKey: .airDate)
+        characters = try values.decodeIfPresent([String].self, forKey: .characters)
         created = try values.decodeIfPresent(String.self, forKey: .created)
-        dimension = try values.decodeIfPresent(String.self, forKey: .dimension)
+        episode = try values.decodeIfPresent(String.self, forKey: .episode)
         id = try values.decodeIfPresent(Int.self, forKey: .id)
         name = try values.decodeIfPresent(String.self, forKey: .name)
-        residents = try values.decodeIfPresent([String].self, forKey: .residents)
-        type = try values.decodeIfPresent(String.self, forKey: .type)
         url = try values.decodeIfPresent(String.self, forKey: .url)
     }
     
