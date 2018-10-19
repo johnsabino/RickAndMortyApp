@@ -18,15 +18,19 @@ class ViewController: UIViewController {
     var actualPage = 1
     var apiManager = APIManager.manager
     
+    var searchController = UISearchController()
+    var scopeButtonTitles = ["Characters","Locations", "Episodes"]
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+        tableView.separatorStyle = .none
         tableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "characterCell")
         
         syncRequest(byPage: actualPage)
+        
+        setSearchController()
         
     }
     
@@ -52,7 +56,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         
-        // Change 10.0 to adjust the distance from bottom
+        // Change (height of view*1.5) to adjust the distance from bottom
         if maximumOffset - currentOffset <= self.view.frame.height*1.5 {
             print("load more...")
             actualPage += 1
@@ -66,32 +70,15 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "characterCell", for: indexPath) as! CharacterTableViewCell
         
         cell.nameLabel?.text = characters[indexPath.row].name
-
         cell.typeLabel.text = characters[indexPath.row].type
-        
-        
+        cell.charImageView.image = UIImage(named: "placeholderImage")
         
         DispatchQueue.main.async {
             if let image = self.characters[indexPath.row].image, let imageURL = URL(string: image) {
-
                 cell.charImageView.downloaded(from: imageURL)
 
             }
         }
-
-//        DispatchQueue.main.async {
-//            if let imageStr = self.characters[indexPath.row].image,
-//                let imageURL = URL(string: imageStr){
-//                do{
-//                    let imgData = try Data(contentsOf: imageURL)
-//                    cell.charImageView.image = UIImage(data: imgData)
-//                }catch{
-//                    print("error")
-//                }
-//
-//            }
-//        }
-        
         return cell
     }
     
@@ -100,6 +87,52 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     
+}
+
+extension ViewController: UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating{
+    
+    func setSearchController() {
+        
+        let sc = UISearchController(searchResultsController: nil)
+        sc.delegate = self
+        sc.searchResultsUpdater = self
+        sc.dimsBackgroundDuringPresentation = false
+        let scb = sc.searchBar
+        scb.delegate = self
+        scb.tintColor = UIColor(named: "black")
+        scb.barTintColor = UIColor.white
+        scb.scopeButtonTitles = scopeButtonTitles
+
+        if let textfield = scb.value(forKey: "searchField") as? UITextField {
+            textfield.textColor = UIColor.blue
+            if let backgroundview = textfield.subviews.first {
+                // Background color
+                backgroundview.backgroundColor = UIColor.white
+                
+                // Rounded corner
+                backgroundview.layer.cornerRadius = 10;
+                backgroundview.clipsToBounds = true;
+            }
+        }
+
+        if let navigationbar = self.navigationController?.navigationBar {
+            navigationbar.barTintColor = UIColor(named: "green")
+        }
+        navigationItem.searchController = sc
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+    }
+    
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        
+    }
 }
 
 

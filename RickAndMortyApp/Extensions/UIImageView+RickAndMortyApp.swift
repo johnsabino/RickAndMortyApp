@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIImageView {
-    func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
+    func downloaded(from url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard
                 let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,

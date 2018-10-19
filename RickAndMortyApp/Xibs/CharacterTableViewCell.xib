@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,17 +35,17 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54M-ur-6Yv">
                                         <rect key="frame" x="4" y="2" width="45" height="20"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="green"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rick" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jG0-wm-lrt">
                                         <rect key="frame" x="4" y="25" width="142" height="17"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="green"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="black"/>
                                 <constraints>
                                     <constraint firstItem="54M-ur-6Yv" firstAttribute="leading" secondItem="Aof-6l-J9w" secondAttribute="leading" constant="4" id="8vX-Sa-BB6"/>
                                     <constraint firstItem="jG0-wm-lrt" firstAttribute="top" secondItem="54M-ur-6Yv" secondAttribute="bottom" constant="3" id="QPs-un-7YG"/>
@@ -59,17 +60,17 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81a-fq-cbt">
                                         <rect key="frame" x="8" y="0.0" width="38" height="20"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="green"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humano" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6gh-D9-cia">
                                         <rect key="frame" x="8" y="21" width="142" height="17"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="green"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="black"/>
                                 <constraints>
                                     <constraint firstItem="6gh-D9-cia" firstAttribute="top" secondItem="81a-fq-cbt" secondAttribute="bottom" constant="1" id="5Cq-BK-8d3"/>
                                     <constraint firstItem="6gh-D9-cia" firstAttribute="leading" secondItem="Gmg-J1-c71" secondAttribute="leading" constant="8" id="JTd-La-4cX"/>
@@ -79,7 +80,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="black"/>
                         <constraints>
                             <constraint firstItem="Aof-6l-J9w" firstAttribute="leading" secondItem="NWS-eo-11a" secondAttribute="leading" constant="8" id="0gb-LY-Bp8"/>
                             <constraint firstItem="Gmg-J1-c71" firstAttribute="leading" secondItem="NWS-eo-11a" secondAttribute="leading" constant="4" id="6M7-81-CDy"/>
@@ -92,6 +93,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" name="black"/>
                 <constraints>
                     <constraint firstItem="NWS-eo-11a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="HFC-pX-kyg"/>
                     <constraint firstItem="NWS-eo-11a" firstAttribute="leading" secondItem="Osn-nV-YhN" secondAttribute="trailing" constant="8" id="XPd-Ul-RWj"/>
@@ -111,4 +113,12 @@
             <point key="canvasLocation" x="20" y="48"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <namedColor name="black">
+            <color red="0.082000002264976501" green="0.11500000208616257" blue="0.16099999845027924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="green">
+            <color red="0.54199999570846558" green="0.82999998331069946" blue="0.10499999672174454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
