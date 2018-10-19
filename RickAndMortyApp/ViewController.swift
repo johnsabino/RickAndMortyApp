@@ -37,6 +37,19 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         return characters.count
     }
     
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+            
+        // UITableView only moves in one direction, y axis
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        
+        // Change 10.0 to adjust the distance from bottom
+        if maximumOffset - currentOffset <= 10.0 {
+            print("load more...")
+        }
+
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "characterCell", for: indexPath) as! CharacterTableViewCell
         
@@ -44,10 +57,14 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
 
         cell.typeLabel.text = characters[indexPath.row].type
         
-        if let image = characters[indexPath.row].image {
-            cell.charImageView.downloaded(from: URL(string: image)!)
+        if let image = characters[indexPath.row].image, let imageURL = URL(string: image) {
+            cell.charImageView.downloaded(from: imageURL)
         }
         
+        // Check if the last row number is the same as the last current data element
+//        if indexPath.row == self.characters.count - 1 {
+//            print("load more...")
+//        }
         
         return cell
     }

@@ -42,17 +42,5 @@ class APIManager {
         }
         DispatchQueue.global(qos: .userInteractive).async {getTask.resume()}
     }
-    
-    func downloadImage(from url: URL, completion: @escaping (Data) -> Void) {
-        let getRequest = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 30)
-        let getTask = URLSession.shared.dataTask(with: getRequest) { (data, response, error) in
-            
-            guard let data = data else {return}
-            DispatchQueue.main.async {
-                completion(data)
-            }
-            
-        }
-        DispatchQueue.global(qos: .userInteractive).async {getTask.resume()}
-    }
+
 }
