@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        
         tableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "characterCell")
         
         syncRequest(byPage: actualPage)
@@ -69,6 +70,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "characterCell", for: indexPath) as! CharacterTableViewCell
         
+        cell.selectionStyle = .none
         cell.nameLabel?.text = characters[indexPath.row].name
         cell.typeLabel.text = characters[indexPath.row].type
         cell.charImageView.image = UIImage(named: "placeholderImage")
@@ -115,8 +117,10 @@ extension ViewController: UISearchControllerDelegate, UISearchBarDelegate, UISea
             }
         }
 
-        if let navigationbar = self.navigationController?.navigationBar {
-            navigationbar.barTintColor = UIColor(named: "green")
+        if let navigationBar = self.navigationController?.navigationBar {
+            //navigationBar.setBackgroundImage(UIImage(), for: .default)
+            //navigationBar.shadowImage = UIImage()
+            navigationBar.barTintColor = UIColor(named: "green")
         }
         navigationItem.searchController = sc
         navigationItem.hidesSearchBarWhenScrolling = false
