@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 class Character : Codable {
     
@@ -16,6 +16,7 @@ class Character : Codable {
     let gender : String?
     let id : Int?
     let image : String?
+    var uiImage : UIImage?
     let location : Location?
     let name : String?
     let origin : Origin?

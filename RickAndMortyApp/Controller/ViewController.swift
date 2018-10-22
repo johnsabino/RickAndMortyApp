@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     var actualPage = 1
     var apiManager = APIManager.manager
     
+    var selectedChar : Character?
+    
     var searchController = UISearchController()
     var scopeButtonTitles = ["Characters","Locations", "Episodes"]
     override func viewDidLoad() {
@@ -69,19 +71,40 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "characterCell", for: indexPath) as! CharacterTableViewCell
-        
+        let char = characters[indexPath.row]
         cell.selectionStyle = .none
-        cell.nameLabel?.text = characters[indexPath.row].name
-        cell.typeLabel.text = characters[indexPath.row].type
-        cell.charImageView.image = UIImage(named: "placeholderImage")
+        cell.nameLabel?.text = char.name
+        cell.statusLabel.text = char.status
+        cell.specieLabel.text = char.species
+        cell.genderLabel.text = char.gender
         
-        DispatchQueue.main.async {
-            if let image = self.characters[indexPath.row].image, let imageURL = URL(string: image) {
-                cell.charImageView.downloaded(from: imageURL)
-
+       
+        
+        if char.uiImage == nil {
+             cell.charImageView.image = UIImage(named: "placeholderImage")
+            
+            DispatchQueue.main.async {
+                if let image = char.image, let imageURL = URL(string: image) {
+                    cell.charImageView.downloaded(from: imageURL, completion: { (img) in
+                        cell.charImageView.image = img
+                        char.uiImage = img
+                    })
+                    
+                }
             }
+        }else {
+            cell.charImageView.image = char.uiImage
         }
+        
+        
+            
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(characters[indexPath.row].name)
+        performSegue(withIdentifier: "segueDetail", sender: characters[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -89,6 +112,21 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "segueDetail" {
+            let vc = segue.destination as! DetailViewController
+            
+            if let selected = sender as? Character {
+                vc.nameStr = selected.name
+                vc.originNameStr = selected.origin?.name
+                vc.uiImage = selected.uiImage
+            }
+            
+    
+        }
+    }
 }
 
 extension ViewController: UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating{

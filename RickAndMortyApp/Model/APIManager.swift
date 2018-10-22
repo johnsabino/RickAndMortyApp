@@ -46,6 +46,7 @@ class APIManager {
                 DispatchQueue.main.async {
                     completion(charachersData)
                 }
+                
             } catch let err {
                 print("Error", err)
             }

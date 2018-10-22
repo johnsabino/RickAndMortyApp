@@ -10,6 +10,7 @@ import Foundation
 
 enum TypeSearch : String {
     case character = "/character"
+    case charAvatar = "/character/avatar"
     case location = "/location"
     case episode = "/episode"
 }
