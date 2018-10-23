@@ -14,3 +14,5 @@ enum TypeSearch : String {
     case location = "/location"
     case episode = "/episode"
 }
+
+

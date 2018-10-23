@@ -145,11 +145,14 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="charImageView" destination="Osn-nV-YhN" id="V9h-fD-8AE"/>
-                <outlet property="genderLabel" destination="Q7X-hf-428" id="Bbu-iK-dz9"/>
+                <outlet property="label_2" destination="81a-fq-cbt" id="CvM-SZ-YbN"/>
+                <outlet property="label_3" destination="gbh-Bx-23c" id="L0l-Zn-AP8"/>
+                <outlet property="label_4" destination="Q7X-hf-428" id="Bbu-iK-dz9"/>
                 <outlet property="nameLabel" destination="54M-ur-6Yv" id="kK3-IX-Gh3"/>
                 <outlet property="roundedView" destination="Pov-fC-fPr" id="7rS-h0-r6B"/>
-                <outlet property="specieLabel" destination="gbh-Bx-23c" id="L0l-Zn-AP8"/>
-                <outlet property="statusLabel" destination="81a-fq-cbt" id="CvM-SZ-YbN"/>
+                <outlet property="titleLabel_2" destination="jG0-wm-lrt" id="eGB-9J-ZzL"/>
+                <outlet property="titleLabel_3" destination="6gh-D9-cia" id="VPO-jK-la7"/>
+                <outlet property="titleLabel_4" destination="4tA-TR-dBS" id="iGV-r4-gMZ"/>
             </connections>
             <point key="canvasLocation" x="19.199999999999999" y="47.676161919040482"/>
         </tableViewCell>

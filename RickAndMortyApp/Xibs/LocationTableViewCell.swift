@@ -1,14 +1,14 @@
 //
-//  CharacterTableViewCell.swift
+//  LocationTableViewCell.swift
 //  RickAndMortyApp
 //
-//  Created by João Paulo on 18/10/18.
+//  Created by João Paulo de Oliveira Sabino on 23/10/18.
 //  Copyright © 2018 João Paulo de Oliveira Sabino. All rights reserved.
 //
 
 import UIKit
 
-class CharacterTableViewCell: UITableViewCell {
+class LocationTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -21,9 +21,7 @@ class CharacterTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel_4: UILabel!
     @IBOutlet weak var label_4: UILabel!
     
-    @IBOutlet weak var charImageView: UIImageView!
     @IBOutlet weak var roundedView: UIView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         roundedView.layer.cornerRadius = 5
@@ -33,6 +31,7 @@ class CharacterTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+        // Configure the view for the selected state
     }
     
 }

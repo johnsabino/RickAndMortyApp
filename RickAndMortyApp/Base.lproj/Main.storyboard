@@ -55,7 +55,7 @@
         <!--Detail View Controller-->
         <scene sceneID="90P-yy-aME">
             <objects>
-                <viewController id="5XC-y2-A5O" customClass="DetailViewController" customModule="RickAndMortyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5XC-y2-A5O" customClass="DetailViewController" customModule="RickAndMortyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wWW-kA-ZpM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -24,9 +24,15 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = uiImage
-        nameLabel.text = nameStr
-        originNameLabel.text = originNameStr
+        print(self.parent)
+        print(self.parent?.parent)
+//        imageView.image = uiImage
+//        nameLabel.text = nameStr
+//        originNameLabel.text = originNameStr
+        
+        
+        
+        
         
     }
 
