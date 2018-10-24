@@ -31,7 +31,6 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        registerForPreviewing(with: self, sourceView: self.view)
         
         tableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "characterCell")
         tableView.register(UINib(nibName: "LocationTableViewCell", bundle: nil), forCellReuseIdentifier: "locationCell")
@@ -47,7 +46,7 @@ class ViewController: UIViewController {
         
         switch typeSearch {
         case .character:
-            
+        
             apiManager.fetchBy(typeSearch: typeSearch,query: "page=\(byPage)") { (request: RootRequest<Character>) in
                 guard let result = request.characters else {return}
                 self.characters.append(contentsOf: result)
@@ -125,6 +124,9 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
             cell.titleLabel_4.text = "GENDER"
             cell.label_4.text = char.gender
             
+            cell.contentView.accessibilityIdentifier = "\(indexPath.row)"
+            registerForPreviewing(with: self, sourceView: cell.contentView)
+            
             if char.uiImage == nil {
                 cell.charImageView.image = UIImage(named: "placeholderImage")
                 
@@ -155,6 +157,8 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
             cell.titleLabel_3.text = "DIMENSION"
             cell.label_3.text = location.dimension
             
+            cell.contentView.accessibilityIdentifier = "\(indexPath.row)"
+            registerForPreviewing(with: self, sourceView: cell.contentView)
             
             return cell
         case .episode:
@@ -170,6 +174,9 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
             cell.titleLabel_3.text = "AIR DATE"
             cell.label_3.text = episode.airDate
             
+            cell.contentView.accessibilityIdentifier = "\(indexPath.row)"
+            registerForPreviewing(with: self, sourceView: cell.contentView)
+            
             return cell
         default:
             print("ERRO")
@@ -181,8 +188,17 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchController.isActive = false
+        selectedChar = characters[indexPath.row]
         performSegue(withIdentifier: "segueDetail", sender: nil)
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let favoriteAction = UITableViewRowAction(style: .normal, title: "Favorite") { (favoriteAction, indexPath) in
+            
+        }
+        return [favoriteAction]
+    }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150.0
@@ -191,15 +207,11 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "segueDetail" {
-//            let vc = segue.destination as! DetailViewController
-//
-//            if let selected = sender as? Character {
-//                vc.nameStr = selected.name
-//                vc.originNameStr = selected.origin?.name
-//                vc.uiImage = selected.uiImage
-//            }
-            
+            let vc = segue.destination as! DetailViewController
+ 
+                vc.character = selectedChar
     
+            
         }
     }
 }
@@ -272,15 +284,16 @@ extension ViewController: UISearchControllerDelegate, UISearchBarDelegate, UISea
 extension ViewController : UIViewControllerPreviewingDelegate {
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let indexPath = tableView?.indexPathForRow(at: location) else { return nil }
         
-        guard let cell = tableView?.cellForRow(at: indexPath) else { return nil }
+        let content = previewingContext.sourceView
         
+        guard let indexPath = Int(content.accessibilityIdentifier!) else {return nil}
+        print(indexPath)
+    
         guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "detailViewController") as? DetailViewController else { return nil }
-        
+    
         detailVC.preferredContentSize = CGSize(width: 0.0, height: 300)
-        
-        previewingContext.sourceRect = cell.frame
+        detailVC.character = characters[indexPath]
         
         return detailVC
     }
