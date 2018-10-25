@@ -102,7 +102,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         if maximumOffset - currentOffset <= self.view.frame.height*1.5 {
             print("load more...")
             actualPage += 1
-            syncRequest(typeSearch:.character, byPage: actualPage)
+            syncRequest(typeSearch: selectedType, byPage: actualPage)
             
         }
 
@@ -132,7 +132,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
                 
                 DispatchQueue.main.async {
                     if let image = char.image, let imageURL = URL(string: image) {
-                        cell.charImageView.downloaded(from: imageURL, completion: { (img) in
+                        UIImageView.downloaded(from: imageURL, completion: { (img) in
                             cell.charImageView.image = img
                             char.uiImage = img
                         })

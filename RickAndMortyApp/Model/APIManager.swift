@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class APIManager {
     
@@ -49,6 +50,31 @@ class APIManager {
                 
             } catch let err {
                 print("Error", err)
+            }
+        }
+    }
+    
+    func syncImages(chars: [Character]){
+        for character in chars {
+            
+            if let image = character.image, let imageURL = URL(string: image) {
+                UIImageView.downloaded(from: imageURL, completion: { (img) in
+                    
+                    if let data = img.jpegData(compressionQuality: 1) ?? img.pngData(),
+                        //diretorio da pasta documents
+                        let diretorio = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as URL{
+                        
+                        do {
+                            //salva a foto na pasta Fotos dentro de documents
+                            try data.write(to: diretorio.appendingPathComponent("/\(character.id ?? 000).jpeg"))
+                            print("Foto Salva!")
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    }
+                    
+                })
+                
             }
         }
     }
