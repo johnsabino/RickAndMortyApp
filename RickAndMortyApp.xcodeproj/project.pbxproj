@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		6C0AAC04217A1E6400DDD071 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0AAC03217A1E6400DDD071 /* Episode.swift */; };
-		6C0AAC07217A20A800DDD071 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0AAC06217A20A800DDD071 /* Enums.swift */; };
+		6C0AAC07217A20A800DDD071 /* TypeSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0AAC06217A20A800DDD071 /* TypeSearch.swift */; };
 		6C0AAC0A217E0AB900DDD071 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0AAC09217E0AB900DDD071 /* DetailViewController.swift */; };
 		6C0AAC0D217F3E4B00DDD071 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0AAC0B217F3E4B00DDD071 /* LocationTableViewCell.swift */; };
 		6C0AAC0E217F3E4B00DDD071 /* LocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C0AAC0C217F3E4B00DDD071 /* LocationTableViewCell.xib */; };
 		6C478DD12179333300BD32A6 /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C478DCF2179333300BD32A6 /* CharacterTableViewCell.swift */; };
 		6C478DD22179333300BD32A6 /* CharacterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C478DD02179333300BD32A6 /* CharacterTableViewCell.xib */; };
 		6C478DD521793C1900BD32A6 /* UIImageView+RickAndMortyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C478DD421793C1900BD32A6 /* UIImageView+RickAndMortyApp.swift */; };
+		6C610115218533A0007CAFA4 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C610114218533A0007CAFA4 /* FavoriteViewController.swift */; };
 		6C9CB8D42180938100F6AA6E /* LocationEpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9CB8D32180938100F6AA6E /* LocationEpisodesViewController.swift */; };
 		6C9CB8D7218098E000F6AA6E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9CB8D6218098E000F6AA6E /* CoreDataManager.swift */; };
 		6C9CB8D921809A3800F6AA6E /* MakeFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9CB8D821809A3800F6AA6E /* MakeFavorite.swift */; };
@@ -35,13 +36,14 @@
 
 /* Begin PBXFileReference section */
 		6C0AAC03217A1E6400DDD071 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
-		6C0AAC06217A20A800DDD071 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		6C0AAC06217A20A800DDD071 /* TypeSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSearch.swift; sourceTree = "<group>"; };
 		6C0AAC09217E0AB900DDD071 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		6C0AAC0B217F3E4B00DDD071 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		6C0AAC0C217F3E4B00DDD071 /* LocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationTableViewCell.xib; sourceTree = "<group>"; };
 		6C478DCF2179333300BD32A6 /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCell.swift; sourceTree = "<group>"; };
 		6C478DD02179333300BD32A6 /* CharacterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterTableViewCell.xib; sourceTree = "<group>"; };
 		6C478DD421793C1900BD32A6 /* UIImageView+RickAndMortyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+RickAndMortyApp.swift"; sourceTree = "<group>"; };
+		6C610114218533A0007CAFA4 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		6C9CB8D32180938100F6AA6E /* LocationEpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationEpisodesViewController.swift; sourceTree = "<group>"; };
 		6C9CB8D6218098E000F6AA6E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		6C9CB8D821809A3800F6AA6E /* MakeFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFavorite.swift; sourceTree = "<group>"; };
@@ -76,7 +78,7 @@
 		6C0AAC05217A209E00DDD071 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				6C0AAC06217A20A800DDD071 /* Enums.swift */,
+				6C0AAC06217A20A800DDD071 /* TypeSearch.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -87,6 +89,7 @@
 				6CE227CF2178CB47004778E4 /* ViewController.swift */,
 				6C0AAC09217E0AB900DDD071 /* DetailViewController.swift */,
 				6C9CB8D32180938100F6AA6E /* LocationEpisodesViewController.swift */,
+				6C610114218533A0007CAFA4 /* FavoriteViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -263,7 +266,7 @@
 				6C0AAC0D217F3E4B00DDD071 /* LocationTableViewCell.swift in Sources */,
 				6CE227D02178CB47004778E4 /* ViewController.swift in Sources */,
 				6CE227E32178CB5A004778E4 /* Config.swift in Sources */,
-				6C0AAC07217A20A800DDD071 /* Enums.swift in Sources */,
+				6C0AAC07217A20A800DDD071 /* TypeSearch.swift in Sources */,
 				6C9CB8D7218098E000F6AA6E /* CoreDataManager.swift in Sources */,
 				6CE227E72178CBA9004778E4 /* APIManager.swift in Sources */,
 				6C9CB8D921809A3800F6AA6E /* MakeFavorite.swift in Sources */,
@@ -272,6 +275,7 @@
 				6C0AAC04217A1E6400DDD071 /* Episode.swift in Sources */,
 				6CE227EA2178CC2A004778E4 /* Character.swift in Sources */,
 				6CE227D62178CB47004778E4 /* RickAndMortyApp.xcdatamodeld in Sources */,
+				6C610115218533A0007CAFA4 /* FavoriteViewController.swift in Sources */,
 				6CE227CE2178CB47004778E4 /* AppDelegate.swift in Sources */,
 				6C0AAC0A217E0AB900DDD071 /* DetailViewController.swift in Sources */,
 				6CE227EC2178CCEC004778E4 /* Location.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
 
@@ -49,8 +50,11 @@ class ViewController: UIViewController {
         
             apiManager.fetchBy(typeSearch: typeSearch,query: "page=\(byPage)") { (request: RootRequest<Character>) in
                 guard let result = request.characters else {return}
-                self.characters.append(contentsOf: result)
-                self.tableView.reloadData()
+                self.apiManager.syncImages(chars: result, completion: {
+                    print("synccccccccc")
+                    self.characters.append(contentsOf: result)
+                    self.tableView.reloadData()
+                })
             }
             
         case .location:
@@ -127,24 +131,34 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
             cell.contentView.accessibilityIdentifier = "\(indexPath.row)"
             registerForPreviewing(with: self, sourceView: cell.contentView)
             
-            if char.uiImage == nil {
-                cell.charImageView.image = UIImage(named: "placeholderImage")
+            //print(characters[indexPath.row].imageFilePath)
+            
+            cell.charImageView.image = UIImage(named: "placeholderImage")
+            if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
+                //pega a url da imagem que está na pasta Fotos e a retorna
+                let charId = String(char.id!)
+                let fileURL = URL(fileURLWithPath: dir.absoluteString).appendingPathComponent("\(charId).jpeg").path
                 
-                DispatchQueue.main.async {
-                    if let image = char.image, let imageURL = URL(string: image) {
-                        UIImageView.downloaded(from: imageURL, completion: { (img) in
-                            cell.charImageView.image = img
-                            char.uiImage = img
-                        })
-                        
+                
+                if let img = UIImage(contentsOfFile:fileURL){
+                    cell.charImageView?.image = img
+                    char.uiImage = img
+                }else{
+                    DispatchQueue.main.async {
+                        if let image = char.image, let imageURL = URL(string: image) {
+                            UIImageView.downloaded(from: imageURL, completion: { (img) in
+                                cell.charImageView.image = img
+                                char.uiImage = img
+                            })
+
+                        }
                     }
                 }
-            }else {
-                cell.charImageView.image = char.uiImage
+                
             }
-            
-            
+     
             return cell
+            
         case .location:
             let cell = tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath) as! LocationTableViewCell
             
@@ -195,6 +209,19 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let favoriteAction = UITableViewRowAction(style: .normal, title: "Favorite") { (favoriteAction, indexPath) in
             
+            var isFavorite = false
+            let char = self.characters[indexPath.row]
+            let fetch : NSFetchRequest<FavoriteChar> = FavoriteChar.fetchRequest()
+            let favoriteChars = CoreDataManager.fetch(fetch)
+            
+            for favChar in favoriteChars {
+                if favChar.id == String(char.id!) {
+                    isFavorite = true
+                }
+            }
+            if !isFavorite {
+                _ = FavoriteChar(char: char)
+            }
         }
         return [favoriteAction]
     }
@@ -261,7 +288,7 @@ extension ViewController: UISearchControllerDelegate, UISearchBarDelegate, UISea
     
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        print(searchBar.showsScopeBar)
+        
         actualPage = 1
         
         switch selectedScope {
@@ -288,7 +315,7 @@ extension ViewController : UIViewControllerPreviewingDelegate {
         let content = previewingContext.sourceView
         
         guard let indexPath = Int(content.accessibilityIdentifier!) else {return nil}
-        print(indexPath)
+        
     
         guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "detailViewController") as? DetailViewController else { return nil }
     

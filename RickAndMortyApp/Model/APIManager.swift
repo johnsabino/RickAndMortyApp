@@ -54,30 +54,41 @@ class APIManager {
         }
     }
     
-    func syncImages(chars: [Character]){
-        for character in chars {
-            
-            if let image = character.image, let imageURL = URL(string: image) {
-                UIImageView.downloaded(from: imageURL, completion: { (img) in
+    func syncImages(chars: [Character], completion: @escaping () -> Void){
+        DispatchQueue.main.async {
+            for character in chars {
+                if let image = character.image, let imageURL = URL(string: image) {
                     
-                    if let data = img.jpegData(compressionQuality: 1) ?? img.pngData(),
-                        //diretorio da pasta documents
-                        let diretorio = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as URL{
+                    UIImageView.downloaded(from: imageURL, completion: { (img) in
+                        let fileManager = FileManager.default
                         
-                        do {
-                            //salva a foto na pasta Fotos dentro de documents
-                            try data.write(to: diretorio.appendingPathComponent("/\(character.id ?? 000).jpeg"))
-                            print("Foto Salva!")
-                        } catch {
-                            print(error.localizedDescription)
+                        if let data = img.jpegData(compressionQuality: 1) ?? img.pngData(),
+                            //diretorio da pasta documents
+                            let diretorio = try? fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as URL{
+                            
+                            let pathComponent = diretorio.appendingPathComponent("\(character.id ?? 000).jpeg")
+                            //print(pathComponent)
+                            let filePath = pathComponent.path
+                            //print(filePath)
+                            
+                            if !fileManager.fileExists(atPath: filePath) {
+                                do {
+                                    try data.write(to: diretorio.appendingPathComponent("/\(character.id ?? 000).jpeg"))
+                                    print("Foto Salva!")
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
+                            }else{
+                                print("FOTO JÁ EXISTE")
+                            }
                         }
-                    }
-                    
-                })
-                
+                        
+                    })
+                }
             }
+            completion()
         }
+        
     }
-    
     
 }

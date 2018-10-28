@@ -7,18 +7,24 @@
 //
 
 import Foundation
+import CoreData
 
 extension FavoriteChar {
-    convenience init(withName: String, gender: String, location: String, origin: String, specie: String, type: String, status: String, imagePath: String){
+    convenience init(char: Character){
         
         self.init(context: CoreDataManager.persistentContainer.viewContext)
-        self.name = withName
-        self.gender = gender
-        self.location = location
-        self.origin = origin
-        self.specie = specie
-        self.type = type
-        self.status = status
+        
+        if let idStr = char.id {
+            self.id = String(idStr)
+        }
+        
+        self.name = char.name
+        self.gender = char.gender
+        self.location = char.location?.name
+        self.origin = char.origin?.name
+        self.specie = char.species
+        self.type = char.type
+        self.status = char.status
         
         CoreDataManager.saveContext()
     }
@@ -26,7 +32,10 @@ extension FavoriteChar {
 
 class MakeFavorite {
     
-    func saveToFavorites(){
+    func fetchFavoriteChar() -> [FavoriteChar]{
+        let fetch : NSFetchRequest<FavoriteChar> = FavoriteChar.fetchRequest()
+        let favoriteChars = CoreDataManager.fetch(fetch)
         
+        return favoriteChars
     }
 }
