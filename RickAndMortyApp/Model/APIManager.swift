@@ -74,12 +74,10 @@ class APIManager {
                             if !fileManager.fileExists(atPath: filePath) {
                                 do {
                                     try data.write(to: diretorio.appendingPathComponent("/\(character.id ?? 000).jpeg"))
-                                    print("Foto Salva!")
+                                    
                                 } catch {
                                     print(error.localizedDescription)
                                 }
-                            }else{
-                                print("FOTO JÁ EXISTE")
                             }
                         }
                         

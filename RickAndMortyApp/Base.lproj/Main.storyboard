@@ -52,7 +52,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4Z-Ib-g0w">
-                                <rect key="frame" x="0.0" y="409" width="375" height="209"/>
+                                <rect key="frame" x="0.0" y="379" width="375" height="239"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rico e Morte" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75S-WI-E7B">
                                         <rect key="frame" x="18" y="6" width="127" height="29"/>
@@ -231,7 +231,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="meK-eU-krk">
-                                <rect key="frame" x="40" y="89" width="295" height="295"/>
+                                <rect key="frame" x="40" y="74" width="295" height="295"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="meK-eU-krk" secondAttribute="height" multiplier="1:1" id="trg-Bf-S2O"/>
                                 </constraints>
@@ -240,12 +240,12 @@
                         <color key="backgroundColor" name="black"/>
                         <constraints>
                             <constraint firstItem="g4Z-Ib-g0w" firstAttribute="trailing" secondItem="2pp-HK-hSi" secondAttribute="trailing" id="J7n-Aa-BLP"/>
-                            <constraint firstItem="meK-eU-krk" firstAttribute="top" secondItem="2pp-HK-hSi" secondAttribute="top" constant="25" id="NAY-t8-WiY"/>
+                            <constraint firstItem="meK-eU-krk" firstAttribute="top" secondItem="2pp-HK-hSi" secondAttribute="top" constant="10" id="NAY-t8-WiY"/>
                             <constraint firstItem="2pp-HK-hSi" firstAttribute="trailing" secondItem="meK-eU-krk" secondAttribute="trailing" constant="40" id="Q9z-Sw-1SV"/>
                             <constraint firstItem="g4Z-Ib-g0w" firstAttribute="bottom" secondItem="2pp-HK-hSi" secondAttribute="bottom" id="Qlu-Qx-4OM"/>
                             <constraint firstItem="g4Z-Ib-g0w" firstAttribute="leading" secondItem="2pp-HK-hSi" secondAttribute="leading" id="YSg-vK-hLE"/>
                             <constraint firstItem="meK-eU-krk" firstAttribute="leading" secondItem="2pp-HK-hSi" secondAttribute="leading" constant="40" id="s8a-9i-DeS"/>
-                            <constraint firstItem="g4Z-Ib-g0w" firstAttribute="top" secondItem="meK-eU-krk" secondAttribute="bottom" constant="25" id="wr5-B6-8zo"/>
+                            <constraint firstItem="g4Z-Ib-g0w" firstAttribute="top" secondItem="meK-eU-krk" secondAttribute="bottom" constant="10" id="wr5-B6-8zo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2pp-HK-hSi"/>
                     </view>
@@ -287,6 +287,9 @@
                         <viewLayoutGuide key="safeArea" id="dkc-Ot-ZSN"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favorites" id="HMs-SI-Btt"/>
+                    <connections>
+                        <outlet property="tableView" destination="D6R-N0-LHS" id="pfJ-1j-mtB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fIO-Lk-yPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     var apiManager = APIManager.manager
     
     var selectedChar : Character?
-    
+    var writing = false
     var searchController = UISearchController()
     var scopeButtonTitles = ["Characters","Locations", "Episodes"]
     
@@ -36,19 +36,20 @@ class ViewController: UIViewController {
         tableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "characterCell")
         tableView.register(UINib(nibName: "LocationTableViewCell", bundle: nil), forCellReuseIdentifier: "locationCell")
         
-        syncRequest(typeSearch: .character, byPage: actualPage)
+
+        syncRequest(typeSearch: .character, query: "page=\(actualPage)")
         
       
         setSearchController()
         
     }
     
-    func syncRequest(typeSearch: TypeSearch, byPage : Int){
+    func syncRequest(typeSearch: TypeSearch, query : String){
         
         switch typeSearch {
         case .character:
         
-            apiManager.fetchBy(typeSearch: typeSearch,query: "page=\(byPage)") { (request: RootRequest<Character>) in
+            apiManager.fetchBy(typeSearch: typeSearch, query: query) { (request: RootRequest<Character>) in
                 guard let result = request.characters else {return}
                 self.apiManager.syncImages(chars: result, completion: {
                     print("synccccccccc")
@@ -58,14 +59,14 @@ class ViewController: UIViewController {
             }
             
         case .location:
-            apiManager.fetchBy(typeSearch: typeSearch,query: "page=\(byPage)") { (request: RootRequest<Location>) in
+            apiManager.fetchBy(typeSearch: typeSearch,query: query) { (request: RootRequest<Location>) in
                 guard let result = request.characters else {return}
                 self.locations.append(contentsOf: result)
                 self.tableView.reloadData()
             }
         case .episode:
             
-            apiManager.fetchBy(typeSearch: typeSearch,query: "page=\(byPage)") { (request: RootRequest<Episode>) in
+            apiManager.fetchBy(typeSearch: typeSearch,query: query) { (request: RootRequest<Episode>) in
                 guard let result = request.characters else {return}
                 self.episodes.append(contentsOf: result)
                 self.tableView.reloadData()
@@ -96,6 +97,11 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         return numberRows
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let height = tableView.layer.bounds.height / 3.5
+        return height
+    }
+    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
             
         // UITableView only moves in one direction, y axis
@@ -103,10 +109,13 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         
         // Change (height of view*1.5) to adjust the distance from bottom
-        if maximumOffset - currentOffset <= self.view.frame.height*1.5 {
+        print(maximumOffset - currentOffset)
+        if maximumOffset - currentOffset <= -100 {
             print("load more...")
             actualPage += 1
-            syncRequest(typeSearch: selectedType, byPage: actualPage)
+            if !writing {
+                syncRequest(typeSearch: selectedType, query: "page=\(actualPage)")
+            }
             
         }
 
@@ -154,7 +163,6 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                 }
-                
             }
      
             return cell
@@ -226,10 +234,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         return [favoriteAction]
     }
     
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150.0
-    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -251,11 +256,13 @@ extension ViewController: UISearchControllerDelegate, UISearchBarDelegate, UISea
         searchController.delegate = self
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
+        
         let scb = searchController.searchBar
         scb.delegate = self
         scb.tintColor = UIColor(named: "black")
         scb.barTintColor = UIColor.white
         scb.scopeButtonTitles = scopeButtonTitles
+        scb.setImage(UIImage(named: "placeholderImage"), for: UISearchBar.Icon.bookmark, state: .normal)
         
         if let textfield = scb.value(forKey: "searchField") as? UITextField {
             textfield.textColor = UIColor.blue
@@ -273,6 +280,7 @@ extension ViewController: UISearchControllerDelegate, UISearchBarDelegate, UISea
             //navigationBar.setBackgroundImage(UIImage(), for: .default)
             //navigationBar.shadowImage = UIImage()
             navigationBar.barTintColor = UIColor(named: "green")
+            navigationBar.tintColor = UIColor(named: "black") ?? UIColor.black
         }
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -282,8 +290,20 @@ extension ViewController: UISearchControllerDelegate, UISearchBarDelegate, UISea
     func updateSearchResults(for searchController: UISearchController) {
         
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("searchhhhh")
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+        if searchText == ""{
+            writing = false
+        }else{
+            writing = true
+        }
+        print(writing)
+        self.characters = []
+        syncRequest(typeSearch: .character, query: "name=\(searchText)")
     }
     
     
@@ -294,13 +314,13 @@ extension ViewController: UISearchControllerDelegate, UISearchBarDelegate, UISea
         switch selectedScope {
         case 0:
             selectedType = .character
-            syncRequest(typeSearch: .character, byPage: actualPage)
+            syncRequest(typeSearch: .character, query: "page=\(actualPage)")
         case 1:
             selectedType = .location
-            syncRequest(typeSearch: .location, byPage: actualPage)
+            syncRequest(typeSearch: .location, query: "page=\(actualPage)")
         case 2:
             selectedType = .episode
-            syncRequest(typeSearch: .episode, byPage: actualPage)
+            syncRequest(typeSearch: .episode, query: "page=\(actualPage)")
         default:
             print("erro")
 
