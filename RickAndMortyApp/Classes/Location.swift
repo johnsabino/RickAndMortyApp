@@ -10,13 +10,13 @@ import Foundation
 
 class Location : Codable {
     
-    let created : String?
-    let dimension : String?
-    let id : Int?
-    let name : String?
-    let residents : [String]?
-    let type : String?
-    let url : String?
+    var created : String?
+    var dimension : String?
+    var id : Int?
+    var name : String?
+    var residents : [String]?
+    var type : String?
+    var url : String?
     
     enum CodingKeys: String, CodingKey {
         case created = "created"
@@ -38,5 +38,7 @@ class Location : Codable {
         type = try values.decodeIfPresent(String.self, forKey: .type)
         url = try values.decodeIfPresent(String.self, forKey: .url)
     }
+    
+    init(){ }
     
 }

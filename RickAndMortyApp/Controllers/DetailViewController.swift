@@ -13,6 +13,8 @@ class DetailViewController: UIViewController {
 
     var character: Character?
     
+    var delegate : SendInstanceDelegate?
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
@@ -28,7 +30,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let char = character else {return}
+        guard let char = delegate?.sendCharacter() else {return}
         
         imageView.image = char.uiImage
         nameLabel.text = char.name
@@ -46,6 +48,8 @@ class DetailViewController: UIViewController {
         
         imageView.layer.cornerRadius = 5
         imageView.clipsToBounds = true
+        
+        navigationItem.title = char.name
     }
 
 

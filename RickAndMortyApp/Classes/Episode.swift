@@ -11,13 +11,13 @@ import Foundation
 
 class Episode : Codable {
     
-    let airDate : String?
-    let characters : [String]?
-    let created : String?
-    let episode : String?
-    let id : Int?
-    let name : String?
-    let url : String?
+    var airDate : String?
+    var characters : [String]?
+    var created : String?
+    var episode : String?
+    var id : Int?
+    var name : String?
+    var url : String?
     
     enum CodingKeys: String, CodingKey {
         case airDate = "air_date"
@@ -39,5 +39,7 @@ class Episode : Codable {
         name = try values.decodeIfPresent(String.self, forKey: .name)
         url = try values.decodeIfPresent(String.self, forKey: .url)
     }
+    
+    init() {}
     
 }

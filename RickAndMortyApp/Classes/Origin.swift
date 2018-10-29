@@ -10,8 +10,8 @@ import Foundation
 
 class Origin : Codable {
     
-    let name : String?
-    let url : String?
+    var name : String?
+    var url : String?
     
     enum CodingKeys: String, CodingKey {
         case name = "name"
@@ -23,6 +23,8 @@ class Origin : Codable {
         name = try values.decodeIfPresent(String.self, forKey: .name)
         url = try values.decodeIfPresent(String.self, forKey: .url)
     }
+    
+    init() {}
     
 }
 

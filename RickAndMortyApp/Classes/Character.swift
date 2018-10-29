@@ -11,20 +11,20 @@ import UIKit
 
 class Character : Codable {
     
-    let created : String?
-    let episode : [String]?
-    let gender : String?
-    let id : Int?
-    let image : String?
+    var created : String?
+    var episode : [String]?
+    var gender : String?
+    var id : Int?
+    var image : String?
     var imageFilePath : String?
     var uiImage : UIImage?
-    let location : Location?
-    let name : String?
-    let origin : Origin?
-    let species : String?
-    let status : String?
-    let type : String?
-    let url : String?
+    var location : Location?
+    var name : String?
+    var origin : Origin?
+    var species : String?
+    var status : String?
+    var type : String?
+    var url : String?
     
     enum CodingKeys: String, CodingKey {
         case created = "created"
@@ -57,6 +57,10 @@ class Character : Codable {
         status = try values.decodeIfPresent(String.self, forKey: .status)
         type = try values.decodeIfPresent(String.self, forKey: .type)
         url = try values.decodeIfPresent(String.self, forKey: .url)
+    }
+    
+    init() {
+        
     }
     
 }

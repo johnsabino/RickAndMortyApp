@@ -25,6 +25,13 @@ class FavoriteViewController: UIViewController {
         tableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "characterCell")
         
         loadSavedData()
+        
+        //set navigation bar colors
+        if let navigationBar = self.navigationController?.navigationBar {
+            navigationBar.barTintColor = UIColor(named: "green")
+            navigationBar.tintColor = UIColor(named: "black") ?? UIColor.black
+        }
+
     }
 
 
@@ -37,7 +44,7 @@ extension FavoriteViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let height = tableView.layer.bounds.height / 4.2
+        let height = tableView.layer.bounds.height / 3.9
         return height
     }
     

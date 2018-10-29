@@ -22,9 +22,12 @@ class ViewController: UIViewController {
     var apiManager = APIManager.manager
     
     var selectedChar : Character?
+    var selectedLocation : Location?
+    var selectedEpisode : Episode?
     var writing = false
     var searchController = UISearchController()
     var scopeButtonTitles = ["Characters","Locations", "Episodes"]
+    var searchTimer : Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,9 +114,10 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         // Change (height of view*1.5) to adjust the distance from bottom
         print(maximumOffset - currentOffset)
         if maximumOffset - currentOffset <= -100 {
-            print("load more...")
-            actualPage += 1
+            
             if !writing {
+                print("load more...")
+                actualPage += 1
                 syncRequest(typeSearch: selectedType, query: "page=\(actualPage)")
             }
             
@@ -210,8 +214,22 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchController.isActive = false
-        selectedChar = characters[indexPath.row]
-        performSegue(withIdentifier: "segueDetail", sender: nil)
+        
+        switch selectedType {
+            case .character:
+                selectedChar = characters[indexPath.row]
+                performSegue(withIdentifier: "segueDetail", sender: nil)
+            case .location:
+                selectedLocation = locations[indexPath.row]
+                selectedEpisode = nil
+                performSegue(withIdentifier: "locationEpDetail", sender: nil)
+            case .episode:
+                selectedEpisode = episodes[indexPath.row]
+                selectedLocation = nil
+                performSegue(withIdentifier: "locationEpDetail", sender: nil)
+            default:
+                print("Errror")
+        }
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -237,13 +255,12 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "segueDetail" {
             let vc = segue.destination as! DetailViewController
- 
-                vc.character = selectedChar
-    
-            
+            vc.delegate = self
+        } else if segue.identifier == "locationEpDetail" {
+            let vc = segue.destination as! LocationEpisodesViewController
+            vc.delegate = self
         }
     }
 }
@@ -288,27 +305,34 @@ extension ViewController: UISearchControllerDelegate, UISearchBarDelegate, UISea
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("searchhhhh")
+
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("UPDATE SEARCH...")
+
         if searchText == ""{
             writing = false
         }else{
             writing = true
         }
         print(writing)
-        self.characters = []
-        syncRequest(typeSearch: .character, query: "name=\(searchText)")
+        searchTimer?.invalidate()
+        searchTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (_) in
+            print("STARTING REQUEST")
+            self.characters = []
+            self.locations = []
+            self.episodes = []
+            self.syncRequest(typeSearch: self.selectedType, query: "name=\(searchText)")
+            self.tableView.reloadData()
+        }
     }
     
     
+    
+    
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        
+        searchBar.text = ""
         actualPage = 1
         
         switch selectedScope {
@@ -340,7 +364,8 @@ extension ViewController : UIViewControllerPreviewingDelegate {
         guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "detailViewController") as? DetailViewController else { return nil }
     
         detailVC.preferredContentSize = CGSize(width: 0.0, height: 300)
-        detailVC.character = characters[indexPath]
+        selectedChar = characters[indexPath]
+        detailVC.delegate = self
         
         return detailVC
     }
@@ -350,6 +375,24 @@ extension ViewController : UIViewControllerPreviewingDelegate {
         show(viewControllerToCommit, sender: self)
         
     }
+}
+
+extension ViewController : SendInstanceDelegate {
+    func sendCharacter() -> Character {
+        return selectedChar ?? Character()
+    }
+    
+    func sendEpisode() -> Episode {
+        return selectedEpisode ?? Episode()
+    }
+    
+    func sendLocation() -> Location {
+        return selectedLocation ?? Location()
+    }
+    
+    
+    
+    
 }
 
 

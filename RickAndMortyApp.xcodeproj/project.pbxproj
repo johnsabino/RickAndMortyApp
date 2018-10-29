@@ -19,6 +19,9 @@
 		6C9CB8D42180938100F6AA6E /* LocationEpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9CB8D32180938100F6AA6E /* LocationEpisodesViewController.swift */; };
 		6C9CB8D7218098E000F6AA6E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9CB8D6218098E000F6AA6E /* CoreDataManager.swift */; };
 		6C9CB8D921809A3800F6AA6E /* MakeFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9CB8D821809A3800F6AA6E /* MakeFavorite.swift */; };
+		6CA1D6AA21868B27004D8943 /* SendInstanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA1D6A921868B27004D8943 /* SendInstanceDelegate.swift */; };
+		6CA1D6AD2186A291004D8943 /* CharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA1D6AB2186A291004D8943 /* CharacterCollectionViewCell.swift */; };
+		6CA1D6AE2186A291004D8943 /* CharacterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CA1D6AC2186A291004D8943 /* CharacterCollectionViewCell.xib */; };
 		6CE227CE2178CB47004778E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE227CD2178CB47004778E4 /* AppDelegate.swift */; };
 		6CE227D02178CB47004778E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE227CF2178CB47004778E4 /* ViewController.swift */; };
 		6CE227D32178CB47004778E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CE227D12178CB47004778E4 /* Main.storyboard */; };
@@ -47,6 +50,9 @@
 		6C9CB8D32180938100F6AA6E /* LocationEpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationEpisodesViewController.swift; sourceTree = "<group>"; };
 		6C9CB8D6218098E000F6AA6E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		6C9CB8D821809A3800F6AA6E /* MakeFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeFavorite.swift; sourceTree = "<group>"; };
+		6CA1D6A921868B27004D8943 /* SendInstanceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInstanceDelegate.swift; sourceTree = "<group>"; };
+		6CA1D6AB2186A291004D8943 /* CharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCell.swift; sourceTree = "<group>"; };
+		6CA1D6AC2186A291004D8943 /* CharacterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCollectionViewCell.xib; sourceTree = "<group>"; };
 		6CE227CA2178CB47004778E4 /* RickAndMortyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CE227CD2178CB47004778E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CE227CF2178CB47004778E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +107,8 @@
 				6C478DD02179333300BD32A6 /* CharacterTableViewCell.xib */,
 				6C0AAC0B217F3E4B00DDD071 /* LocationTableViewCell.swift */,
 				6C0AAC0C217F3E4B00DDD071 /* LocationTableViewCell.xib */,
+				6CA1D6AB2186A291004D8943 /* CharacterCollectionViewCell.swift */,
+				6CA1D6AC2186A291004D8943 /* CharacterCollectionViewCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -119,6 +127,14 @@
 				6C9CB8D6218098E000F6AA6E /* CoreDataManager.swift */,
 			);
 			path = CoreDataManager;
+			sourceTree = "<group>";
+		};
+		6CA1D6A821868B08004D8943 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				6CA1D6A921868B27004D8943 /* SendInstanceDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		6CE227C12178CB47004778E4 = {
@@ -140,6 +156,7 @@
 		6CE227CC2178CB47004778E4 /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
+				6CA1D6A821868B08004D8943 /* Delegates */,
 				6C9CB8D5218098C600F6AA6E /* CoreDataManager */,
 				6C0AAC08217DEB2100DDD071 /* Controllers */,
 				6C0AAC05217A209E00DDD071 /* Enums */,
@@ -250,6 +267,7 @@
 				6CE227D82178CB49004778E4 /* Assets.xcassets in Resources */,
 				6CE227D32178CB47004778E4 /* Main.storyboard in Resources */,
 				6C478DD22179333300BD32A6 /* CharacterTableViewCell.xib in Resources */,
+				6CA1D6AE2186A291004D8943 /* CharacterCollectionViewCell.xib in Resources */,
 				6C0AAC0E217F3E4B00DDD071 /* LocationTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +298,8 @@
 				6C0AAC0A217E0AB900DDD071 /* DetailViewController.swift in Sources */,
 				6CE227EC2178CCEC004778E4 /* Location.swift in Sources */,
 				6CE227EE2178CCFA004778E4 /* Origin.swift in Sources */,
+				6CA1D6AA21868B27004D8943 /* SendInstanceDelegate.swift in Sources */,
+				6CA1D6AD2186A291004D8943 /* CharacterCollectionViewCell.swift in Sources */,
 				6C9CB8D42180938100F6AA6E /* LocationEpisodesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
