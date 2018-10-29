@@ -366,7 +366,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aE9-Ev-Yn2">
-                                        <rect key="frame" x="0.0" y="191" width="375" height="213"/>
+                                        <rect key="frame" x="0.0" y="167" width="375" height="217"/>
                                         <color key="backgroundColor" name="gray"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3mn-3A-fuQ">
                                             <size key="itemSize" width="180" height="213"/>
@@ -403,8 +403,8 @@
                                     <constraint firstItem="wSL-S9-gy5" firstAttribute="top" secondItem="bq0-mC-bSj" secondAttribute="bottom" constant="24" id="hPz-h3-juD"/>
                                     <constraint firstAttribute="trailing" secondItem="gXA-2K-6d7" secondAttribute="trailing" id="jVT-Ga-Tnx"/>
                                     <constraint firstAttribute="trailing" secondItem="aE9-Ev-Yn2" secondAttribute="trailing" id="lKf-zK-0S9"/>
-                                    <constraint firstItem="aE9-Ev-Yn2" firstAttribute="top" secondItem="gXA-2K-6d7" secondAttribute="bottom" constant="24" id="rqT-nd-dL2"/>
-                                    <constraint firstAttribute="bottom" secondItem="aE9-Ev-Yn2" secondAttribute="bottom" constant="150" id="wRQ-1V-Lbo"/>
+                                    <constraint firstItem="aE9-Ev-Yn2" firstAttribute="top" secondItem="gXA-2K-6d7" secondAttribute="bottom" id="rqT-nd-dL2"/>
+                                    <constraint firstAttribute="bottom" secondItem="aE9-Ev-Yn2" secondAttribute="bottom" constant="170" id="wRQ-1V-Lbo"/>
                                     <constraint firstItem="aU9-9V-bUR" firstAttribute="top" secondItem="Vde-xH-Fuo" secondAttribute="bottom" constant="24" id="xL7-OX-xD4"/>
                                     <constraint firstItem="gXA-2K-6d7" firstAttribute="leading" secondItem="eC5-54-JHs" secondAttribute="leading" id="yBN-mn-7xd"/>
                                     <constraint firstItem="dJw-kL-Slm" firstAttribute="leading" secondItem="eC5-54-JHs" secondAttribute="leading" id="yKT-Xk-kuB"/>
