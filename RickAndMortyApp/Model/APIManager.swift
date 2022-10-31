@@ -39,7 +39,6 @@ class APIManager {
     }
     
     func fetchChar(charURL : String, completion: @escaping (Character) -> Void){
-        let baseURL = Config.baseURL
         guard let getURL = URL(string: charURL) else {
             print("error url not found")
             return
@@ -54,7 +53,7 @@ class APIManager {
             do {
                 let decoder = JSONDecoder()
                 let charachersData = try decoder.decode(Character.self, from: data)
-                print(charachersData.name)
+                print(charachersData.name ?? "nil name")
                 DispatchQueue.main.async {
                     completion(charachersData)
                 }

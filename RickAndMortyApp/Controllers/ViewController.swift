@@ -272,7 +272,6 @@ extension ViewController: UISearchControllerDelegate, UISearchBarDelegate, UISea
         searchController = UISearchController(searchResultsController: nil)
         searchController.delegate = self
         searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
         
         let scb = searchController.searchBar
         scb.delegate = self
@@ -294,8 +293,6 @@ extension ViewController: UISearchControllerDelegate, UISearchBarDelegate, UISea
         }
 
         if let navigationBar = self.navigationController?.navigationBar {
-            //navigationBar.setBackgroundImage(UIImage(), for: .default)
-            //navigationBar.shadowImage = UIImage()
             navigationBar.barTintColor = UIColor(named: "green")
             navigationBar.tintColor = UIColor(named: "black") ?? UIColor.black
         }
@@ -347,7 +344,6 @@ extension ViewController: UISearchControllerDelegate, UISearchBarDelegate, UISea
             syncRequest(typeSearch: .episode, query: "page=\(actualPage)")
         default:
             print("erro")
-
         }
     }
 }
