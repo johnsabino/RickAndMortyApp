@@ -8,20 +8,22 @@
 
 import Foundation
 
-struct CharRequest : Codable {
+class RootRequest<T: Codable>: Codable {
     
     let info : Info?
-    let characters : [Character]?
+    let characters : [T]?
     
     enum CodingKeys: String, CodingKey {
         case info = "info"
         case characters = "results"
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        info = try Info(from: decoder)
-        characters = try values.decodeIfPresent([Character].self, forKey: .characters)
+        info = try values.decodeIfPresent(Info.self, forKey: .info)
+        characters = try values.decodeIfPresent([T].self, forKey: .characters)
     }
     
 }
+
+

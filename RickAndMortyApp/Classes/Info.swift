@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct Info : Codable {
+class Info : Codable {
     
-    let count : Int?
-    let next : String?
-    let pages : Int?
-    let prev : String?
+    var count : Int?
+    var next : String?
+    var pages : Int?
+    var prev : String?
     
     enum CodingKeys: String, CodingKey {
         case count = "count"
@@ -22,13 +22,15 @@ struct Info : Codable {
         case prev = "prev"
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         count = try values.decodeIfPresent(Int.self, forKey: .count)
         next = try values.decodeIfPresent(String.self, forKey: .next)
         pages = try values.decodeIfPresent(Int.self, forKey: .pages)
         prev = try values.decodeIfPresent(String.self, forKey: .prev)
     }
+    
+    init() {}
     
 }
 
